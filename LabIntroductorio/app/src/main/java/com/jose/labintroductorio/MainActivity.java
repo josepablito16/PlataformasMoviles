@@ -46,15 +46,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //creacion de objetos de tipo amigos
-        final Amigos oscar=new Amigos("Oscar Juarez",19, "Compu","Rojo","Corinto");
-        amigosL.add(oscar);
-        final Amigos javier=new Amigos("Javier Carpio",18, "Compu","Rojo","Azul");
-        amigosL.add(javier);
-        final Amigos rodrigo=new Amigos("Rodrigro Zea",18, "Compu","Rojo","Verde");
-        amigosL.add(rodrigo);
-        final Amigos pablo=new Amigos("Pablo Pelaez",19, "Admin","Rojo","Rosado");
-        amigosL.add(pablo);
+
+
 
 
         super.onCreate(savedInstanceState);
@@ -100,12 +93,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //agregar objeto
+
                 Disposable disposable= io.reactivex.Observable.create(new ObservableOnSubscribe<Object>() {
                     @Override
                   public void subscribe(ObservableEmitter<Object> e) throws Exception
                   {
+                      //creacion de objetos de tipo amigos
                       Amigos oscar=new Amigos("Oscar Juarez",19, "Compu","Rojo","Corinto");
                       amigosRepository.insertAmigos(oscar);
+                      Amigos javier=new Amigos("Javier Carpio",18, "Compu","Rojo","Azul");
+                      amigosRepository.insertAmigos(javier);
+                      final Amigos rodrigo=new Amigos("Rodrigro Zea",18, "Compu","Rojo","Verde");
+                      amigosRepository.insertAmigos(rodrigo);
+                      final Amigos pablo=new Amigos("Pablo Pelaez",19, "Admin","Rojo","Rosado");
+                      amigosRepository.insertAmigos(pablo);
+
+                      loadData();
                       e.onComplete();
 
                   }
@@ -135,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 
